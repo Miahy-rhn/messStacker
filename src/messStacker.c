@@ -39,3 +39,37 @@ uint8_t checksumMessage(uint8_t cmd, char *data, uint8_t size) {
 	
 	return checksum;
 }
+
+/**
+ * Envoie un message dans la file circulaire
+ * Vérifie que la file n'est pas pleine avant d'ajouter
+ * Gère le wrap-around circulaire avec l'opérateur modulo
+ */
+bool sendMessage(uint8_t cmd, char *data, uint8_t size) {
+	/* Vérifier que la file n'est pas pleine */
+	if (messCount >= SIZE_STACK) {
+		return false;
+	}
+	
+	/* Calculer la position du nouveau message (circulaire) */
+	int newPos = (lastPos + 1) % SIZE_STACK;
+	
+	/* Remplir la structure Message */
+	stackMess[newPos].cmd = cmd;
+	
+	/* Copier les données */
+	for (uint8_t i = 0; i < size; i++) {
+		stackMess[newPos].data[i] = data[i];
+	}
+	
+	stackMess[newPos].size = size;
+	
+	/* Calculer et stocker le checksum */
+	stackMess[newPos].checksum = checksumMessage(cmd, data, size);
+	
+	/* Mettre à jour les variables internes */
+	lastPos = newPos;
+	messCount++;
+	
+	return true;
+}
