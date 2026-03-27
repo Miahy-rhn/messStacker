@@ -23,3 +23,19 @@ int messCount = 0;              /* Nombre de messages dans la pile */
 bool haveMessage(void) {
 	return messCount > 0;
 }
+
+/**
+ * Calcule la somme de contrôle (checksum) pour un ensemble de données
+ * Somme de cmd + somme de tous les octets de data
+ * Chaque octet du tableau data est casté en uint8_t avant ajout
+ */
+uint8_t checksumMessage(uint8_t cmd, char *data, uint8_t size) {
+	uint8_t checksum = cmd;  /* Initialiser avec la commande */
+	
+	/* Ajouter tous les octets du tableau data */
+	for (uint8_t i = 0; i < size; i++) {
+		checksum += (uint8_t)data[i];  /* Cast en uint8_t avant d'ajouter */
+	}
+	
+	return checksum;
+}
