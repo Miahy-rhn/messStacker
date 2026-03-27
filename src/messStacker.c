@@ -105,3 +105,28 @@ uint8_t curMessageChecksum(void) {
 	}
 	return stackMess[curPos].checksum;
 }
+
+/**
+ * Copie les données du message courant dans le buffer fourni
+ * Retourne false s'il n'y a pas de message ou si lengthMax est insuffisant
+ * Sinon copie size octets et retourne true
+ */
+bool curMessageData(char *buff, uint8_t lengthMax) {
+	/* Vérifier qu'il y a un message dans la file */
+	if (messCount == 0) {
+		return false;
+	}
+	
+	/* Vérifier que le buffer est suffisamment grand */
+	uint8_t messageSize = stackMess[curPos].size;
+	if (lengthMax < messageSize) {
+		return false;
+	}
+	
+	/* Copier les données du message courant dans le buffer */
+	for (uint8_t i = 0; i < messageSize; i++) {
+		buff[i] = stackMess[curPos].data[i];
+	}
+	
+	return true;
+}
