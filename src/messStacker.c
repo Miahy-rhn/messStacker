@@ -15,3 +15,11 @@ int lastPos = -1;               /* Position du dernier message posté */
 int curPos = 0;                 /* Position du message courant */
 int messCount = 0;              /* Nombre de messages dans la pile */
 
+
+/**
+ * Vérifie s'il y a un message disponible dans la file
+ * retourne true si au moins un message existe, false sinon
+ */
+bool haveMessage(void) {
+	return messCount > 0;
+}
