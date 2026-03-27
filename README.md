@@ -20,3 +20,8 @@ messStacker/
 - **tests/** : Regroupe tous les tests pour valider le bon fonctionnement des opérations de pile
 - **docs/** : Documentation technique et guides d'utilisation
 - **examples/** : Exemples pratiques montrant comment utiliser messStacker
+
+
+### Dépot distant
+
+- **url** : `https://github.com/username/messStacker.git`
