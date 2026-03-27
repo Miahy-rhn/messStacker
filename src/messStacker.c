@@ -130,3 +130,24 @@ bool curMessageData(char *buff, uint8_t lengthMax) {
 	
 	return true;
 }
+
+/**
+ * Passe au message suivant dans la file
+ * Libère le message courant et avance curPos de manière circulaire
+ * Retourne false s'il n'y a pas de message, true si l'opération a réussi
+ */
+bool nextMessage(void) {
+	/* Vérifier qu'il y a un message courant */
+	if (messCount == 0) {
+		return false;
+	}
+	
+	/* Avancer la position curPos de manière circulaire */
+	curPos = (curPos + 1) % SIZE_STACK;
+	
+	/* Diminuer le nombre de messages */
+	messCount--;
+	
+	return true;
+}
+

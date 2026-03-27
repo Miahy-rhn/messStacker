@@ -1,7 +1,7 @@
 
 # messStacker
 
-**messStacker** est une application de gestion de pile permettant de manipuler des structures de données de type LIFO (Last In, First Out). Le projet offre des fonctionnalités essentielles pour empiler et dépiler des éléments, tout en fournissant une interface simple et intuitive pour les opérations courantes.
+**messStacker** est une librairie C pour la gestion d'une file de messages. Elle permet d'envoyer, stocker et consulter des messages organisés en structure interne de manière FIFO (First In, First Out). Chaque message contient une commande (cmd), des données binaires (data) et une somme de contrôle (checksum) pour la validation.
 
 ## Arborescence du projet
 
